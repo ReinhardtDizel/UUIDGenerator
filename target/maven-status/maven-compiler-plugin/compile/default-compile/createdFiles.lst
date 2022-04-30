@@ -1,0 +1,9 @@
+academy\reyngardt\annotation\processor\visitor\ClassTypeManager$ClassTypeManagerUtils.class
+academy\reyngardt\annotation\processor\UUIDGenerator.class
+academy\reyngardt\annotation\processor\generator\UUIDGeneratorClass.class
+academy\reyngardt\annotation\processor\visitor\UUIDGeneratorVisitor$1.class
+academy\reyngardt\annotation\processor\UUIDGeneratorProcessor.class
+META-INF\services\javax.annotation.processing.Processor
+academy\reyngardt\annotation\processor\visitor\ClassTypeManager$UsedType.class
+academy\reyngardt\annotation\processor\visitor\ClassTypeManager.class
+academy\reyngardt\annotation\processor\visitor\UUIDGeneratorVisitor.class
