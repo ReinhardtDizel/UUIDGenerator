@@ -5,9 +5,8 @@ import academy.reyngardt.annotation.processor.generator.UUIDGeneratorClass;
 import java.lang.String;
 
 abstract class UUIDGeneratorAnnotationTest$$Proxy {
-  private UUIDGeneratorClass generator = new UUIDGeneratorClass();
-
   {
+    UUIDGeneratorClass generator = new UUIDGeneratorClass();
     String generatedId = generator.getId();
     if (generatedId != null) {
       ((UUIDGeneratorAnnotationTest) this).id = generatedId;

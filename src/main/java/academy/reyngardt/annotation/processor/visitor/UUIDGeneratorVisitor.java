@@ -37,7 +37,6 @@ public class UUIDGeneratorVisitor extends ElementScanner9<Void, Void> {
     private final TreeMaker treeMaker;
     private final Names names;
     private final ClassTypeManager classTypeManager = new ClassTypeManager();
-    private final FieldSpec.Builder generatorField = FieldSpec.builder(UUIDGeneratorClass.class, "generator").addModifiers(Modifier.PRIVATE);
 
     public UUIDGeneratorVisitor(ProcessingEnvironment environment, TypeElement typeElement) {
         super();
@@ -61,8 +60,8 @@ public class UUIDGeneratorVisitor extends ElementScanner9<Void, Void> {
             }
         });
         classTypeManager.setFiledType(field.asType());
-        generatorField.initializer("new $T()", classTypeManager.geUUIDGeneratorClassName());
-        builder.addStatement("$T generatedId = generator.getId()", String.class)
+        builder.addStatement("$T generator = new $T()", classTypeManager.geUUIDGeneratorClassName(), classTypeManager.geUUIDGeneratorClassName())
+                .addStatement("$T generatedId = generator.getId()", String.class)
                 .beginControlFlow("if (generatedId != null)")
                 .addStatement("(($T) this).$L = generatedId", classTypeManager.getEnclosingElementClassName(),
                         field.getSimpleName())
@@ -78,7 +77,6 @@ public class UUIDGeneratorVisitor extends ElementScanner9<Void, Void> {
         final TypeSpec typeSpec = TypeSpec.classBuilder(originElement.getSimpleName() + "$$Proxy")
                 .addModifiers(Modifier.ABSTRACT)
                 .addOriginatingElement(originElement)
-                .addField(generatorField.build())
                 .addInitializerBlock(builder.build())
                 .build();
         final JavaFile javaFile = JavaFile.builder(originElement.getEnclosingElement().toString(), typeSpec)
